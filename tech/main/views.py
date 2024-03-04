@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from .forms import CustomAuthenticationForm, CustomUserCreationForm, PurchaseForm, IngredientForm
 from .models import Ingredient, Purchase, PurchaseHistory
+from django.utils import timezone
 
 
 def index(request):
@@ -59,9 +60,6 @@ def edit_ingredient(request, ingredient_id):
         form = IngredientForm(instance=ingredient)
 
     return render(request, 'main/edit_ingredient.html', {'form': form})
-
-
-from django.utils import timezone
 
 
 def purchase(request):
