@@ -1,6 +1,18 @@
 {% extends 'main/base.html' %}
 
+{% block title %}Purchase History | Tastech{% endblock %}
+
 {% block content %}
-    <h2>Purchase history</h2>
+    <h2>Purchase History</h2>
+    <ul>
+        {% for purchase in purchase_history %}
+            <li>
+                <p>Purchase Date: {{ purchase.purchase_date }}</p>
+                <p>Ingredient: {{ purchase.ingredient }}</p>
+                <p>Quantity: {{ purchase.quantity }}</p>
+                <p>Total Price: {{ purchase.total_price }}$</p>
+            </li>
+        {% endfor %}
+    </ul>
     <button type="submit"><a href="{% url 'profile' %}">Go to Profile</a></button>
 {% endblock %}

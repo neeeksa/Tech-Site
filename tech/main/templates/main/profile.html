@@ -5,6 +5,11 @@
 {% block content %}
     <h2>User Profile</h2>
     <p>Welcome: {{ user_nickname }}!</p>
-    <button type="submit"><a href="{% url 'index' %}">Go to Homepage</a></button><br>
+    <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+    </form><br>
+    <a href="{% url 'index' %}">Go to Homepage</a><br>
+    <br>
     <a href="{% url 'purchase_history' %}">Purchase history</a><br>
 {% endblock %}

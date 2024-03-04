@@ -1,8 +1,7 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
-from django.http import HttpResponseRedirect
-from django.urls import reverse
-from .forms import CustomAuthenticationForm, CustomUserCreationForm
+from django.contrib.auth import login
+from .forms import CustomAuthenticationForm, CustomUserCreationForm, PurchaseForm, IngredientForm
+from .models import Ingredient, Purchase, PurchaseHistory
 
 
 def index(request):
@@ -14,15 +13,93 @@ def menu(request):
 
 
 def inventory(request):
-    return render(request, 'main/inventory.html')
+    if request.method == 'POST':
+        form = IngredientForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            quantity = form.cleaned_data['quantity']
+            price = form.cleaned_data['unit_price']
+
+            # Пытаемся найти ингредиент с таким же именем
+            ingredient, created = Ingredient.objects.get_or_create(name=name, defaults={'quantity': quantity, 'price': price})
+
+            if not created:
+                # Если ингредиент с таким именем уже существует, обновляем его количество и цену
+                ingredient.quantity += quantity
+                ingredient.price = price
+                ingredient.save()
+
+            # Перенаправляем пользователя на страницу инвентаря после добавления/обновления ингредиента
+            return redirect('inventory')
+    else:
+        form = IngredientForm()
+
+    ingredients = Ingredient.objects.all()
+    context = {
+        'ingredients': ingredients,
+        'form': form,
+    }
+    return render(request, 'main/inventory.html', context)
 
 
-def buy(request):
-    return render(request, 'main/buy.html')
+def delete_ingredient(request, ingredient_id):
+    ingredient = Ingredient.objects.get(pk=ingredient_id)
+    ingredient.delete()
+    return redirect('inventory')
+
+
+def edit_ingredient(request, ingredient_id):
+    ingredient = Ingredient.objects.get(pk=ingredient_id)
+    if request.method == 'POST':
+        form = IngredientForm(request.POST, instance=ingredient)
+        if form.is_valid():
+            form.save()
+            return redirect('inventory')
+    else:
+        form = IngredientForm(instance=ingredient)
+
+    return render(request, 'main/edit_ingredient.html', {'form': form})
+
+
+from django.utils import timezone
+
+
+def purchase(request):
+    if request.method == 'POST':
+        form = PurchaseForm(request.POST)
+        if form.is_valid():
+            purchase_instance = form.save(commit=False)
+            purchase_instance.user = request.user
+            purchase_instance.total_price = purchase_instance.ingredient.price * purchase_instance.quantity
+
+            # Используем timezone.now() для создания "aware datetime"
+            purchase_instance.purchase_date = timezone.now()
+
+            purchase_instance.save()
+
+            # Создаем запись в истории покупок
+            purchase_history_entry = PurchaseHistory.objects.create(
+                user=request.user,
+                ingredient=purchase_instance.ingredient,
+                quantity=purchase_instance.quantity,
+                total_price=purchase_instance.total_price,
+                purchase_date=purchase_instance.purchase_date  # Передаем "aware datetime"
+            )
+            purchase_history_entry.save()
+
+            return redirect('index')
+    else:
+        form = PurchaseForm()
+
+    context = {
+        'form': form,
+    }
+    return render(request, 'main/purchase.html', context)
 
 
 def purchase_history(request):
-    return render(request, 'main/purchase_history.html')
+    purchase_history = PurchaseHistory.objects.filter(user=request.user)
+    return render(request, 'main/purchase_history.html', {'purchase_history': purchase_history})
 
 
 def login(request):
@@ -46,10 +123,6 @@ def signup(request):
     else:
         form = CustomUserCreationForm()
     return render(request, 'main/signup.html', {'form': form})
-
-
-def profile(request):
-    return render(request, 'main/profile.html')
 
 
 def profile(request):

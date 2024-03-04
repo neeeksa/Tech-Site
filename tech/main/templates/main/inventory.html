@@ -3,4 +3,19 @@
 {% block content %}
     <h2>INVENTORY</h2>
     <button type="submit"><a href="{% url 'index' %}">Go to Homepage</a></button>
+    <ul>
+        {% for ingredient in ingredients %}
+            <li>{{ ingredient.name }} - {{ ingredient.quantity }} - {{ ingredient.price }}$
+                <a href="{% url 'delete_ingredient' ingredient.id %}">Delete</a> |
+                <a href="{% url 'edit_ingredient' ingredient.id %}">Edit</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <h3>Add New Ingredient</h3>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Ingredient</button>
+    </form>
 {% endblock %}
