@@ -9,6 +9,22 @@ def index(request):
     return render(request, 'main/index.html')
 
 
+def menu(request):
+    return render(request, 'main/menu.html')
+
+
+def inventory(request):
+    return render(request, 'main/inventory.html')
+
+
+def buy(request):
+    return render(request, 'main/buy.html')
+
+
+def purchase_history(request):
+    return render(request, 'main/purchase_history.html')
+
+
 def login(request):
     if request.method == 'POST':
         form = CustomAuthenticationForm(request, data=request.POST)

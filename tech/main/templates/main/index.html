@@ -1,8 +1,6 @@
-<!-- main/templates/main/index.html -->
-
 {% extends 'main/base.html' %}
 
-{% block title %}Home | Tastetech{% endblock %}
+{% block title %}Home | Tastech{% endblock %}
 
 {% block content %}
 <h2>Welcome to Tastech!</h2>
@@ -12,6 +10,10 @@
         {% csrf_token %}
         <button type="submit">Logout</button>
     </form>
+    <a href="{% url 'profile' %}">Profile</a><br>
+    <a href="{% url 'menu' %}">Menu</a><br>
+    <a href="{% url 'inventory' %}">Inventory</a><br>
+    <a href="{% url 'buy' %}">Buy</a><br>
 {% else %}
     <p>You are not logged in.</p>
     <a href="{% url 'login' %}">Login</a> | <a href="{% url 'signup' %}">Sign Up</a>
