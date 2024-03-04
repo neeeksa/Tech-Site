@@ -1,0 +1,19 @@
+<!-- main/templates/main/index.html -->
+
+{% extends 'main/base.html' %}
+
+{% block title %}Home | Tastetech{% endblock %}
+
+{% block content %}
+<h2>Welcome to Tastech!</h2>
+{% if request.user.is_authenticated %}
+    <p>You are logged in as: {{ request.user.username }}</p>
+    <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+    </form>
+{% else %}
+    <p>You are not logged in.</p>
+    <a href="{% url 'login' %}">Login</a> | <a href="{% url 'signup' %}">Sign Up</a>
+{% endif %}
+{% endblock %}

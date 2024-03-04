@@ -1,0 +1,9 @@
+# main/models.py
+
+from django.contrib.auth.models import AbstractUser
+from django.db import models
+
+
+class User(AbstractUser):
+    # Добавьте сюда любые дополнительные поля, если это необходимо
+    pass
