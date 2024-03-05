@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
-from .forms import CustomAuthenticationForm, CustomUserCreationForm, PurchaseForm, IngredientForm
-from .models import Ingredient, Purchase, PurchaseHistory
+from .forms import (CustomAuthenticationForm, CustomUserCreationForm, PurchaseForm, IngredientForm, MenuItemForm,
+                    RecipeRequirementForm)
+from .models import Ingredient, PurchaseHistory, MenuItem, RecipeRequirement
 from django.utils import timezone
 
 
@@ -9,8 +10,57 @@ def index(request):
     return render(request, 'main/index.html')
 
 
+def view_requirements(request, menu_item_id):
+    menu_item = MenuItem.objects.get(pk=menu_item_id)
+    requirements = RecipeRequirement.objects.filter(menu_item=menu_item)
+    return render(request, 'main/view_requirements.html', {'menu_item': menu_item, 'requirements': requirements})
+
+
+def menu_form(request):
+    if request.method == 'POST':
+        form = MenuItemForm(request.POST)
+        requirement_form = RecipeRequirementForm(request.POST)
+        if form.is_valid():
+            menu_item = form.save()  # Сохраняем новый элемент меню
+            return redirect('view_requirements', menu_item_id=menu_item.id)  # Перенаправляем на страницу с требованиями к рецепту
+        elif requirement_form.is_valid():
+            requirement_form.save()  # Сохраняем требование к рецепту
+            return redirect('menu')  # Перенаправляем на страницу меню после сохранения
+    else:
+        form = MenuItemForm()
+        requirement_form = RecipeRequirementForm()
+
+    context = {
+        'form': form,
+        'requirement_form': requirement_form,
+        'menu_item_id': request.GET.get('menu_item_id')
+    }
+    return render(request, 'main/menu_form.html', context)
+
+
 def menu(request):
-    return render(request, 'main/menu.html')
+    if request.method == 'POST':
+        form = MenuItemForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('menu')
+    else:
+        form = MenuItemForm()
+
+    menu_items = MenuItem.objects.all()
+    context = {
+        'menu_items': menu_items,
+        'form': form,
+    }
+    return render(request, 'main/menu.html', context)
+
+
+def confirm_delete_menu_item(request, menu_item_id):
+    menu_item = MenuItem.objects.get(pk=menu_item_id)
+    if request.method == 'POST':
+        menu_item.delete()
+        return redirect('menu')  # Перенаправляем на страницу меню после удаления
+    return render(request, 'main/confirm_delete_menu_item.html', {'menu_item': menu_item})
 
 
 def inventory(request):
