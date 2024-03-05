@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-    <h2>Purchase Menu Item</h2>
+    <h2>Purchase a dish from the Menu</h2>
     <button type="submit"><a href="{% url 'index' %}">Go to Homepage</a></button>
     <form method="post">
         {% csrf_token %}
