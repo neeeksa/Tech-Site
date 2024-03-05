@@ -8,7 +8,11 @@
         {% for purchase in purchase_history %}
             <li>
                 <p>Purchase Date: {{ purchase.purchase_date }}</p>
-                <p>Ingredient: {{ purchase.ingredient }}</p>
+                {% if purchase.menu_item %}
+                    <p>Menu Item: {{ purchase.menu_item }}</p>
+                {% else %}
+                    <p>Ingredient: {{ purchase.ingredient }}</p>
+                {% endif %}
                 <p>Quantity: {{ purchase.quantity }}</p>
                 <p>Total Price: {{ purchase.total_price }}$</p>
             </li>
