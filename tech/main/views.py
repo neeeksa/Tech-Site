@@ -1,9 +1,27 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
-from .forms import CustomAuthenticationForm, CustomUserCreationForm, PurchaseForm, IngredientForm, MenuItemForm
+from .forms import CustomAuthenticationForm, CustomUserCreationForm, PurchaseForm, IngredientForm, MenuItemForm, PurchaseMenuItemForm
 
 from .models import Ingredient, PurchaseHistory, MenuItem
 from django.utils import timezone
+
+
+
+def purchase_menu(request):
+    if request.method == 'POST':
+        form = PurchaseMenuItemForm(request.POST)
+        if form.is_valid():
+            # Обработка данных формы при ее валидности
+            # Это может включать создание записи в базе данных или другие действия
+            # Например:
+            menu_item = form.cleaned_data['menu_item']
+            quantity = form.cleaned_data['quantity']
+            # Здесь можно продолжить обработку данных в соответствии с вашей бизнес-логикой
+            return redirect('index')  # Перенаправляем на главную страницу после покупки
+    else:
+        form = PurchaseMenuItemForm()
+
+    return render(request, 'main/purchase_menu.html', {'form': form})
 
 
 def index(request):

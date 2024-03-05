@@ -4,6 +4,12 @@ from .models import User, Ingredient, Purchase, MenuItem, RecipeRequirement
 from django.forms import inlineformset_factory
 
 
+class PurchaseMenuItemForm(forms.Form):
+    menu_item = forms.ModelChoiceField(queryset=MenuItem.objects.all(), label='Menu item')
+    quantity = forms.IntegerField(min_value=1, label='Quantity')
+
+
+
 class CustomUserCreationForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = User
