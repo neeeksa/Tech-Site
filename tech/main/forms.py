@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import User, Ingredient, Purchase, MenuItem, RecipeRequirement
+from django.forms import inlineformset_factory
 
 
 class CustomUserCreationForm(UserCreationForm):
@@ -38,3 +39,6 @@ class RecipeRequirementForm(forms.ModelForm):
     class Meta:
         model = RecipeRequirement
         fields = ['ingredient', 'quantity']
+
+
+

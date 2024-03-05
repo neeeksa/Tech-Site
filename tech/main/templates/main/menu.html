@@ -1,23 +1,38 @@
 {% extends 'main/base.html' %}
 
-{% block title %}Menu | Tastech{% endblock %}
+{% block title %}
+    Menu | Tastech
+{% endblock %}
 
 {% block content %}
     <h2>Menu</h2>
-    <ul>
-        {% for item in menu_items %}
-            <li>{{ item.name }} - ${{ item.price }}
-                <button type="submit"><a href="{% url 'view_requirements' menu_item_id=item.id %}">Требование к рецепту</a></button>
-                <button type="submit"><a href="{% url 'confirm_delete_menu_item' item.id %}">Delete</a></button>
-            </li>
-        {% endfor %}
-    </ul>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in menu_items %}
+            <tr>
+                <td>{{ item.name }}</td>
+                <td>${{ item.price }}</td>
+                <td>
+                    <a href="{% url 'confirm_delete_menu_item' item.id %}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
     <h3>Add New Menu Item</h3>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <br>
-        <button type="submit">Add Item</button>
+
+
+        <button type="submit">Add Item </button>
     </form>
     <br>
     <button type="submit"><a href="{% url 'index' %}">Go to Homepage</a></button>
