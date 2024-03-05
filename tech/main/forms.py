@@ -32,7 +32,7 @@ class IngredientForm(forms.ModelForm):
 class MenuItemForm(forms.ModelForm):
     class Meta:
         model = MenuItem
-        fields = ['name', 'price']
+        fields = ['name', 'price', 'quantity']  # Добавляем поле quantity
 
 
 class RecipeRequirementForm(forms.ModelForm):

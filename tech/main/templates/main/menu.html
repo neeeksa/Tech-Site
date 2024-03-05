@@ -11,6 +11,7 @@
             <tr>
                 <th>Name</th>
                 <th>Price</th>
+                <th>Quantity</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -19,6 +20,7 @@
             <tr>
                 <td>{{ item.name }}</td>
                 <td>${{ item.price }}</td>
+                <td>{{ item.quantity }}</td>
                 <td>
                     <a href="{% url 'confirm_delete_menu_item' item.id %}">Delete</a>
                 </td>
