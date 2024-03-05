@@ -15,8 +15,8 @@ def purchase_menu(request):
             quantity = form.cleaned_data['quantity']
 
             # Проверяем, что количество элемента меню больше нуля
-            if menu_item.quantity <= 0:
-                form.add_error(None, "This ingredient is out of stock.")
+            if menu_item.quantity < quantity:
+                form.add_error(None, "Not enough stock for this item.")
                 return render(request, 'main/purchase_menu.html', {'form': form})
 
             purchase_instance = form.save(commit=False)
