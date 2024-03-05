@@ -1,12 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from .models import User, Ingredient, Purchase, MenuItem, RecipeRequirement
+from .models import User, Ingredient, Purchase, MenuItem, RecipeRequirement, PurchaseHistory
 from django.forms import inlineformset_factory
-
-
-class PurchaseMenuItemForm(forms.Form):
-    menu_item = forms.ModelChoiceField(queryset=MenuItem.objects.all(), label='Menu item')
-    quantity = forms.IntegerField(min_value=1, label='Quantity')
 
 
 
@@ -47,4 +42,10 @@ class RecipeRequirementForm(forms.ModelForm):
         fields = ['ingredient', 'quantity']
 
 
+class PurchaseMenuItemForm(forms.ModelForm):
+    menu_item = forms.ModelChoiceField(queryset=MenuItem.objects.all(), label='Menu item')
+    quantity = forms.IntegerField(min_value=1, label='Quantity')
 
+    class Meta:
+        model = PurchaseHistory
+        fields = ['menu_item', 'quantity']

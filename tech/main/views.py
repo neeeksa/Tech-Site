@@ -11,12 +11,17 @@ def purchase_menu(request):
     if request.method == 'POST':
         form = PurchaseMenuItemForm(request.POST)
         if form.is_valid():
-            # Обработка данных формы при ее валидности
-            # Это может включать создание записи в базе данных или другие действия
-            # Например:
+            purchase_instance = form.save(commit=False)
+            purchase_instance.user = request.user
             menu_item = form.cleaned_data['menu_item']
-            quantity = form.cleaned_data['quantity']
-            # Здесь можно продолжить обработку данных в соответствии с вашей бизнес-логикой
+            purchase_instance.total_price = menu_item.price * form.cleaned_data['quantity']
+            purchase_instance.purchase_date = timezone.now()
+            purchase_instance.save()
+
+            # Обновляем количество доступных элементов меню
+            menu_item.quantity -= purchase_instance.quantity
+            menu_item.save()
+
             return redirect('index')  # Перенаправляем на главную страницу после покупки
     else:
         form = PurchaseMenuItemForm()

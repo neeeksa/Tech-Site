@@ -54,10 +54,16 @@ class PurchasedIngredient(models.Model):
 
 class PurchaseHistory(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
+    ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE, null=True, blank=True)
+    menu_item = models.ForeignKey(MenuItem, on_delete=models.CASCADE, null=True, blank=True)  # Новое поле для элементов меню
     quantity = models.IntegerField()
     total_price = models.DecimalField(max_digits=10, decimal_places=2)
     purchase_date = models.DateTimeField(default=datetime.now)
 
     def __str__(self):
-        return f'{self.user.username} - {self.ingredient.name} - {self.quantity} - {self.total_price} - {self.purchase_date}'
+        if self.ingredient:
+            return f'{self.user.username} - {self.ingredient.name} - {self.quantity} - {self.total_price} - {self.purchase_date}'
+        elif self.menu_item:
+            return f'{self.user.username} - {self.menu_item.name} - {self.quantity} - {self.total_price} - {self.purchase_date}'
+        else:
+            return f'{self.user.username} - No item - {self.quantity} - {self.total_price} - {self.purchase_date}'
