@@ -1,25 +1,32 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
+from django.contrib import messages
 from .forms import CustomAuthenticationForm, CustomUserCreationForm, PurchaseForm, IngredientForm, MenuItemForm, PurchaseMenuItemForm
 
 from .models import Ingredient, PurchaseHistory, MenuItem
 from django.utils import timezone
 
 
-
 def purchase_menu(request):
     if request.method == 'POST':
         form = PurchaseMenuItemForm(request.POST)
         if form.is_valid():
+            menu_item = form.cleaned_data['menu_item']
+            quantity = form.cleaned_data['quantity']
+
+            # Проверяем, что количество элемента меню больше нуля
+            if menu_item.quantity <= 0:
+                form.add_error(None, "This ingredient is out of stock.")
+                return render(request, 'main/purchase_menu.html', {'form': form})
+
             purchase_instance = form.save(commit=False)
             purchase_instance.user = request.user
-            menu_item = form.cleaned_data['menu_item']
-            purchase_instance.total_price = menu_item.price * form.cleaned_data['quantity']
+            purchase_instance.total_price = menu_item.price * quantity
             purchase_instance.purchase_date = timezone.now()
             purchase_instance.save()
 
             # Обновляем количество доступных элементов меню
-            menu_item.quantity -= purchase_instance.quantity
+            menu_item.quantity -= quantity
             menu_item.save()
 
             return redirect('index')  # Перенаправляем на главную страницу после покупки
