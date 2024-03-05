@@ -22,7 +22,8 @@
                 <td>${{ item.price }}</td>
                 <td>{{ item.quantity }}</td>
                 <td>
-                    <a href="{% url 'confirm_delete_menu_item' item.id %}">Delete</a>
+                    <a href="{% url 'confirm_delete_menu_item' item.id %}">Delete</a> |
+                    <a href="{% url 'edit_menu_item' item.id %}">Edit</a>
                 </td>
             </tr>
             {% endfor %}
@@ -32,8 +33,6 @@
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-
-
         <button type="submit">Add Item </button>
     </form>
     <br>

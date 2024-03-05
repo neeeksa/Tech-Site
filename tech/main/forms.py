@@ -49,3 +49,9 @@ class PurchaseMenuItemForm(forms.ModelForm):
     class Meta:
         model = PurchaseHistory
         fields = ['menu_item', 'quantity']
+
+
+class EditMenuItemForm(forms.ModelForm):
+    class Meta:
+        model = MenuItem
+        fields = ['name', 'price', 'quantity']

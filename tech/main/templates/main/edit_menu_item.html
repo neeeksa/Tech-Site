@@ -1,0 +1,16 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+    Edit Menu Item | Tastech
+{% endblock %}
+
+{% block content %}
+    <h2>Edit Menu Item</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save Changes</button>
+    </form>
+    <br>
+    <button type="submit"><a href="{% url 'menu' %}">Go Back</a></button>
+{% endblock %}

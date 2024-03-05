@@ -1,10 +1,23 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login
 from django.contrib import messages
-from .forms import CustomAuthenticationForm, CustomUserCreationForm, PurchaseForm, IngredientForm, MenuItemForm, PurchaseMenuItemForm
+from .forms import (CustomAuthenticationForm, CustomUserCreationForm, PurchaseForm, IngredientForm, MenuItemForm,
+                    PurchaseMenuItemForm, EditMenuItemForm)
 
 from .models import Ingredient, PurchaseHistory, MenuItem
 from django.utils import timezone
+
+
+def edit_menu_item(request, pk):
+    menu_item = get_object_or_404(MenuItem, pk=pk)
+    if request.method == 'POST':
+        form = EditMenuItemForm(request.POST, instance=menu_item)
+        if form.is_valid():
+            form.save()
+            return redirect('menu')  # Перенаправляем на главную страницу после редактирования
+    else:
+        form = EditMenuItemForm(instance=menu_item)
+    return render(request, 'main/edit_menu_item.html', {'form': form, 'menu_item': menu_item})
 
 
 def purchase_menu(request):
