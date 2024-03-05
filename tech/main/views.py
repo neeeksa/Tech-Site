@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from .forms import CustomAuthenticationForm, CustomUserCreationForm, PurchaseForm, IngredientForm, MenuItemForm
 
-from .models import Ingredient, PurchaseHistory, MenuItem, RecipeRequirement
+from .models import Ingredient, PurchaseHistory, MenuItem
 from django.utils import timezone
 
 
@@ -93,21 +93,24 @@ def purchase(request):
             purchase_instance = form.save(commit=False)
             purchase_instance.user = request.user
             purchase_instance.total_price = purchase_instance.ingredient.price * purchase_instance.quantity
-
-            # Используем timezone.now() для создания "aware datetime"
             purchase_instance.purchase_date = timezone.now()
 
-            purchase_instance.save()
+            if purchase_instance.ingredient.quantity <= 0:
+                # Если количество ингредиента равно нулю или меньше, возвращаемся к странице покупки с сообщением об ошибке
+                form.add_error(None, "This ingredient is out of stock.")
+                return render(request, 'main/purchase.html', {'form': form})
 
-            # Создаем запись в истории покупок
-            purchase_history_entry = PurchaseHistory.objects.create(
+            purchase_instance.save()
+            purchase_instance.ingredient.quantity -= purchase_instance.quantity
+            purchase_instance.ingredient.save()
+
+            PurchaseHistory.objects.create(
                 user=request.user,
                 ingredient=purchase_instance.ingredient,
                 quantity=purchase_instance.quantity,
                 total_price=purchase_instance.total_price,
-                purchase_date=purchase_instance.purchase_date  # Передаем "aware datetime"
+                purchase_date=purchase_instance.purchase_date
             )
-            purchase_history_entry.save()
 
             return redirect('index')
     else:
