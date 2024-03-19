@@ -9,6 +9,7 @@
     <p class="logged-in-user">You are logged in as: {{ request.user.username }}</p>
     <h2>Purchase a dish from the Menu</h2>
     <button class="go_to_homepage" onclick="location.href='{% url 'index' %}'">Go to Homepage</button>
+    <button class="profile_button" onclick="location.href='{% url 'profile' %}'">Profile</button><br>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}

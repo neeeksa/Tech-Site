@@ -4,11 +4,13 @@
 {% block title %}Purchase History | Tastech{% endblock %}
 
 {% block content %}
+{% if request.user.is_authenticated %}
+    <p class="logged-in-user">You are logged in as: {{ request.user.username }}</p>
 <head>
     <link rel="stylesheet" href="{% static 'main/css/purchase_history.css' %}">
 </head>
 <h2>Purchase History</h2>
-<button type="submit" class="profile-button"><a href="{% url 'profile' %}">Go to Profile</a></button>
+<button class="profile_button" onclick="location.href='{% url 'profile' %}'">Profile</button><br>
 <ul class="purchase-history"> <!-- Добавлен класс purchase-history -->
     {% for purchase in purchase_history %}
         <li>
@@ -22,5 +24,9 @@
             <p>Total Price: {{ purchase.total_price }}$</p>
         </li>
     {% endfor %}
+    {% else %}
+    <p>You are not logged in.</p>
+    <a href="{% url 'login' %}">Login</a> | <a href="{% url 'signup' %}">Sign Up</a>
+{% endif %}
 </ul>
 {% endblock %}
