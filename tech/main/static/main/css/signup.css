@@ -1,0 +1,88 @@
+* {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Центрируем контент по вертикали */
+    min-height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.container {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px; /* Добавляем немного отступа снизу для заголовка */
+}
+
+.form-group {
+    margin-bottom: 20px; /* Отступ снизу между элементами формы */
+}
+
+.form-group label {
+    display: block; /* Делаем метки блочными элементами для правильного отображения */
+    margin-bottom: 5px; /* Отступ снизу для меток */
+}
+
+button[type="submit"] {
+    width: 50%;
+    padding: 10px;
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 15px;
+    margin-left: 58px;
+    display: block; /* Сделаем кнопку блочным элементом, чтобы установить ширину на 100% */
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    margin: 10px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+
+button:hover {
+    background-color: #0056b3;
+    outline: none;
+}
+
+/* создание подсказки для создания аккаунта */
+.info-icon {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 15px;
+    font-weight: bold;
+    cursor: help;
+    margin-left: 5px;
+}
