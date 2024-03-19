@@ -9,41 +9,10 @@
     <link rel="stylesheet" href="{% static 'main/css/signup.css' %}"> <!-- Подключение login.css -->
 </head>
 <h2>Sign Up</h2>
-<form method="post" class="form">
+<form method="post" class="form" autocomplete="off">
     {% csrf_token %}
-    <div class="form-group">
-        <label for="username">
-            Username
-            <span class="info-icon" title="Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.">i</span>
-        </label>
-        <input type="text" id="username" name="username">
-    </div>
-
-    <div class="form-group">
-        <label for="email">
-            Email address
-            <span class="info-icon" title="Enter your email address.">i</span>
-        </label>
-        <input type="email" id="email" name="email">
-    </div>
-
-    <div class="form-group">
-        <label for="password">
-            Password
-            <span class="info-icon" title="Your password must contain at least 8 characters and can't be too similar to your other personal information.">i</span>
-        </label>
-        <input type="password" id="password" name="password">
-    </div>
-
-    <div class="form-group">
-        <label for="confirm_password">
-            Password confirmation
-            <span class="info-icon" title="Enter the same password as before, for verification.">i</span>
-        </label>
-        <input type="password" id="confirm_password" name="confirm_password">
-    </div>
-
+    {{ form.as_p }}
     <button type="submit" class="signup-button">Sign Up</button> <!-- Добавляем класс signup-button -->
-    <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
 </form>
+<p class="P">Already have an account? <a href="{% url 'login' %}">Login</a></p>
 {% endblock %}

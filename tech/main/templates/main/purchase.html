@@ -5,7 +5,7 @@
 {% block content %}
 {% if request.user.is_authenticated %}
     <p class="logged-in-user">You are logged in as: {{ request.user.username }}</p>
-    <h2>Purchase Snack</h2>
+    <h2 class="h2-snack">Purchase Snack</h2>
     <button class="go_to_homepage" onclick="location.href='{% url 'index' %}'">Go to Homepage</button>
     <button class="profile_button" onclick="location.href='{% url 'profile' %}'">Profile</button><br>
     <form action="{% url 'logout' %}" method="post">

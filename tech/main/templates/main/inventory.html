@@ -7,9 +7,9 @@
 {% block content %}
 {% if request.user.is_authenticated %}
     <p class="logged-in-user">You are logged in as: {{ request.user.username }}</p>
-    <h2>INVENTORY</h2>
     <button class="go_to_homepage" onclick="location.href='{% url 'index' %}'">Go to Homepage</button>
     <button class="profile_button" onclick="location.href='{% url 'profile' %}'">Profile</button><br>
+    <h2 class="inventory-title">INVENTORY</h2>
     <form action="{% url 'logout' %}" method="post">
         {% csrf_token %}
         <button type="submit" class="logout-button">Logout</button>

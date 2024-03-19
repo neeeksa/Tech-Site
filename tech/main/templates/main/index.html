@@ -7,7 +7,7 @@
 <head>
     <link rel="stylesheet" href="{% static 'main/css/index.css' %}"> <!-- Подключение login.css -->
 </head>
-<h2>Welcome to Tastech!</h2>
+<h2 class="welcome">Welcome to Tastech!</h2>
 {% if request.user.is_authenticated %}
     <p class="logged-in-user">You are logged in as: {{ request.user.username }}</p>
     <button class="profile_button" onclick="location.href='{% url 'profile' %}'">Profile</button><br>
@@ -25,7 +25,9 @@
     <a href="{% url 'purchase_menu' %}">Purchase a dish from the Menu</a><br>
     <br>
 {% else %}
-    <p>You are not logged in.</p>
-    <a href="{% url 'login' %}">Login</a> | <a href="{% url 'signup' %}">Sign Up</a>
+    <form class="form-g">
+        <p>You are not logged in.</p>
+        <a href="{% url 'login' %}">Login</a> | <a href="{% url 'signup' %}">Sign Up</a>
+    </form>
 {% endif %}
 {% endblock %}

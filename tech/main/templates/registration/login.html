@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{% static 'main/css/login.css' %}"> <!-- Подключение login.css -->
 </head>
 <h2>Login</h2>
-<form method="post" class="form">
+<form method="post" class="form" autocomplete="off">
     {% csrf_token %}
     <div class="form-group"> <!-- Добавляем класс form-group -->
         <label for="id_username">Username:</label>
@@ -20,7 +20,7 @@
         <label for="id_password">Password:</label>
         <input type="password" name="password" id="id_password">
     </div>
-    <button type="submit" class="login-button">Login</button>
+    <button class="login-button">Login</button>
 </form>
-<p>Don't have an account? <a href="{% url 'signup' %}">Register</a></p>
+<p class="P">Don't have an account? <a href="{% url 'signup' %}">Register</a></p>
 {% endblock %}

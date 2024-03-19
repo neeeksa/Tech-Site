@@ -1,0 +1,26 @@
+.welcome{
+     margin-bottom: 10px ;
+}
+
+.form-g{
+    text-align: center;
+}
+
+.form-g a {
+    display: inline-block; /* Делаем ссылки блочными элементами */
+    margin-right: 10px; /* Добавляем отступ справа для всех ссылок */
+    padding: 5px 10px; /* Добавляем немного отступов вокруг текста ссылок */
+    text-decoration: none; /* Убираем подчеркивание у ссылок */
+    color: #007bff; /* Цвет текста ссылок */
+    border: 1px solid #007bff; /* Добавляем границу для ссылок */
+    border-radius: 5px; /* Закругляем углы границы */
+}
+
+.form-g a:hover {
+    background-color: #007bff; /* Изменяем цвет фона при наведении курсора */
+    color: #fff; /* Изменяем цвет текста при наведении курсора */
+}
+
+.form-g a:not(:last-child) {
+    margin-right: 3px; /* Добавляем отступ справа кроме последней ссылки */
+}

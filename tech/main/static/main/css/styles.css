@@ -77,7 +77,7 @@ button a:visited {
     width: auto;
 }
 
-.logout-button {
+.logout-button{
     display: inline-block;
     padding: 10px 20px;
     background-color: #007bff;
@@ -174,4 +174,18 @@ select {
     margin-bottom: 10px;
     background-color: #fff;
     color: #495057;
+}
+
+.inventory-title {
+    margin-top: 30px; /* Отступ сверху */
+    margin-bottom: -25px; /* Отступ снизу */
+}
+
+.welcome{
+    margin-bottom: -25px;
+}
+
+.h2-snack{
+    margin-bottom: -25px;
+    margin-left: 45px;
 }

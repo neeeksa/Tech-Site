@@ -1,57 +1,58 @@
-.container {
-    width: 100%;
-    max-width: 400px;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+/* Стилизация формы */
+.form {
+    max-width: 350px; /* Максимальная ширина формы */
+    padding: 45px; /* Внутренний отступ */
+    background-color: #f9f9f9; /* Цвет фона */
+    border-radius: 35px; /* Скругление углов */
+    box-shadow: 10px 10px 15px 15px rgba(0, 10, 0, 0.1);
+    margin: 0 auto; /* Центрирование по горизонтали */
+    text-align: center; /* Центрирование текста */
 }
 
+/* Стилизация заголовка */
 h2 {
-    color: #333;
-    text-align: center;
-    margin-bottom: 20px; /* Добавляем немного отступа снизу для заголовка */
+    text-align: center; /* Выравнивание по центру */
+    margin-bottom: 15px; /* Отступ снизу */
+    margin-left: -26px;
 }
 
-.form-group {
-    margin-bottom: 20px; /* Отступ снизу между элементами формы */
-}
-
-.form-group label {
-    display: block; /* Делаем метки блочными элементами для правильного отображения */
-    margin-bottom: 5px; /* Отступ снизу для меток */
-}
-
-
-label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-    margin: 10px;
-}
-
-input[type="text"],
-input[type="password"],
-input[type="email"] {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-}
-
-
-/* создание подсказки для создания аккаунта */
-.info-icon {
-    display: inline-block;
-    width: 15px;
-    height: 15px;
-    background-color: #007bff;
-    color: #fff;
-    border-radius: 50%;
-    text-align: center;
-    line-height: 15px;
-    font-weight: bold;
-    cursor: help;
+/* Стилизация полей ввода */
+.form input[type="text"],
+.form input[type="email"],
+.form input[type="password"] {
+    width: 100%; /* Ширина поля ввода */
+    padding: 10px; /* Внутренний отступ */
+    margin-bottom: 0px; /* Отступ снизу */
+    border: 1px solid #ccc; /* Граница */
+    border-radius: 5px; /* Скругление углов */
+    box-sizing: border-box; /* Учитываем padding и border в общей ширине */
     margin-left: 5px;
+}
+
+/* Стилизация текста с инструкциями */
+.form label {
+    margin-left: 25px;
+    font-weight: bold; /* Жирный шрифт */
+    margin-bottom: 6px; /* Отступ снизу */
+}
+
+/* Стилизация ссылки для входа */
+.form p {
+    margin-top: 20px; /* Отступ сверху */
+}
+
+.signup-button{
+    margin-right: 1234125px;
+}
+
+/* Стилизация ссылки для входа */
+.P {
+    color: #000; /* Цвет текста ссылки */
+    text-decoration: none; /* Убираем подчеркивание */
+    text-align: center; /* Выравнивание по центру */
+    margin-bottom: 15px; /* Отступ снизу */
+    margin-left: 25px;
+}
+p a {
+    color: #007bff; /* Цвет ссылки */
 }
