@@ -5,11 +5,17 @@
 {% endblock %}
 
 {% block content %}
+{% if request.user.is_authenticated %}
+    <p class="logged-in-user">You are logged in as: {{ request.user.username }}</p>
     <h2>Purchase a dish from the Menu</h2>
-    <button type="submit"><a href="{% url 'index' %}">Go to Homepage</a></button>
+    <button class="go_to_homepage" onclick="location.href='{% url 'index' %}'">Go to Homepage</button>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Buy</button>
     </form>
+{% else %}
+    <p>You are not logged in.</p>
+    <a href="{% url 'login' %}">Login</a> | <a href="{% url 'signup' %}">Sign Up</a>
+{% endif %}
 {% endblock %}

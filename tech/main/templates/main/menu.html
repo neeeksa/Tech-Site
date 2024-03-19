@@ -5,6 +5,8 @@
 {% endblock %}
 
 {% block content %}
+{% if request.user.is_authenticated %}
+    <p class="logged-in-user">You are logged in as: {{ request.user.username }}</p>
     <h2>Menu</h2>
     <table>
         <thead>
@@ -36,5 +38,9 @@
         <button type="submit">Add Item </button>
     </form>
     <br>
-    <button type="submit"><a href="{% url 'index' %}">Go to Homepage</a></button>
+    <button class="go_to_homepage" onclick="location.href='{% url 'index' %}'">Go to Homepage</button>
+{% else %}
+    <p>You are not logged in.</p>
+    <a href="{% url 'login' %}">Login</a> | <a href="{% url 'signup' %}">Sign Up</a>
+{% endif %}
 {% endblock %}
