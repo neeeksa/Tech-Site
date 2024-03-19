@@ -6,15 +6,16 @@
 
 .logout-button {
     font-size: 16px; /* Изменяем размер шрифта кнопки */
-    margin-left: 45px !important;
+    margin-right: 80px !important;
 }
 
 .homepage-link,
 .purchase-history-link {
     display: block;
-    text-align: center;
     color: #007bff;
     text-decoration: none;
+    margin-top: -40px;
+    margin-left: 65px;
 }
 
 .homepage-link:hover,

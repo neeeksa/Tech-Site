@@ -10,7 +10,7 @@
 <h2>Welcome to Tastech!</h2>
 {% if request.user.is_authenticated %}
     <p class="logged-in-user">You are logged in as: {{ request.user.username }}</p>
-    <a href="{% url 'profile' %}">Profile</a><br>
+    <button class="profile_button" onclick="location.href='{% url 'profile' %}'">Profile</button><br>
     <br>
     <a href="{% url 'menu' %}">Menu</a><br>
     <br>

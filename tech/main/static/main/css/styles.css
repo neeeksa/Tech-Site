@@ -56,8 +56,23 @@ button a:visited {
     border-radius: 5px;
     cursor: pointer;
     position: absolute; /* Позиционируем абсолютно */
+    top: 85px; /* Отступ сверху */
+    right: 0px; /* Отступ справа */
+    width: auto;
+}
+
+.profile_button{
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    position: absolute; /* Позиционируем абсолютно */
     top: 45px; /* Отступ сверху */
-    right: 20px; /* Отступ справа */
+    right: 0px; /* Отступ справа */
     width: auto;
 }
 
