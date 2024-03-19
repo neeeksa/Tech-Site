@@ -25,7 +25,7 @@
                     <td>{{ ingredient.quantity }}</td>
                     <td>${{ ingredient.price }}</td>
                     <td>
-                        <a href="{% url 'delete_ingredient' ingredient.id %}">Delete</a> |
+                        <a href="{% url 'confirm_delete_ingredient_item' ingredient.id %}">Delete</a> |
                         <a href="{% url 'edit_ingredient' ingredient.id %}">Edit</a>
                     </td>
                 </tr>

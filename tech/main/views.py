@@ -110,10 +110,12 @@ def inventory(request):
     return render(request, 'main/inventory.html', context)
 
 
-def delete_ingredient(request, ingredient_id):
+def confirm_delete_ingredient_item(request, ingredient_id):
     ingredient = Ingredient.objects.get(pk=ingredient_id)
-    ingredient.delete()
-    return redirect('inventory')
+    if request.method == 'POST':
+        ingredient.delete()
+        return redirect('inventory')  # Перенаправляем на страницу инвентаря после удаления
+    return render(request, 'main/confirm_delete_ingredient_item.html', {'ingredient': ingredient})
 
 
 def edit_ingredient(request, ingredient_id):
