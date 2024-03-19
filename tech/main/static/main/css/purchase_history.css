@@ -1,0 +1,23 @@
+.purchase-history {
+    list-style-type: none; /* Убираем маркеры списка */
+}
+
+.purchase-history li {
+    margin-bottom: 20px; /* Отступ между элементами списка */
+    border: 1px solid #ccc; /* Добавляем рамку вокруг каждого элемента списка */
+    padding: 15px; /* Добавляем внутренний отступ вокруг текста элемента списка */
+}
+
+.purchase-history li p {
+    margin: 5px 0; /* Убираем внутренние отступы у абзацев внутри элементов списка */
+}
+
+h2 {
+    margin-top: 25px; /* Отступ сверху */
+    margin-bottom: 20px; /* Отступ снизу */
+    margin-left: 55px;
+}
+
+.profile-button{
+    margin-left: 65px !important;
+}

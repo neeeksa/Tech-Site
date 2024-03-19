@@ -1,22 +1,26 @@
 {% extends 'main/base.html' %}
+{% load static %}
 
 {% block title %}Purchase History | Tastech{% endblock %}
 
 {% block content %}
-    <h2>Purchase History</h2>
-    <ul>
-        {% for purchase in purchase_history %}
-            <li>
-                <p>Purchase Date: {{ purchase.purchase_date }}</p>
-                {% if purchase.menu_item %}
-                    <p>Menu Item: {{ purchase.menu_item }}</p>
-                {% else %}
-                    <p>Ingredient: {{ purchase.ingredient }}</p>
-                {% endif %}
-                <p>Quantity: {{ purchase.quantity }}</p>
-                <p>Total Price: {{ purchase.total_price }}$</p>
-            </li>
-        {% endfor %}
-    </ul>
-    <button type="submit"><a href="{% url 'profile' %}">Go to Profile</a></button>
+<head>
+    <link rel="stylesheet" href="{% static 'main/css/purchase_history.css' %}">
+</head>
+<h2>Purchase History</h2>
+<button type="submit" class="profile-button"><a href="{% url 'profile' %}">Go to Profile</a></button>
+<ul class="purchase-history"> <!-- Добавлен класс purchase-history -->
+    {% for purchase in purchase_history %}
+        <li>
+            <p>Purchase Date: {{ purchase.purchase_date }}</p>
+            {% if purchase.menu_item %}
+                <p>Menu Item: {{ purchase.menu_item }}</p>
+            {% else %}
+                <p>Ingredient: {{ purchase.ingredient }}</p>
+            {% endif %}
+            <p>Quantity: {{ purchase.quantity }}</p>
+            <p>Total Price: {{ purchase.total_price }}$</p>
+        </li>
+    {% endfor %}
+</ul>
 {% endblock %}

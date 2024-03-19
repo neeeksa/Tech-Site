@@ -29,3 +29,13 @@ button:hover {
     background-color: #0056b3;
     outline: none;
 }
+
+button a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button a:hover,
+button a:visited {
+    color: inherit;
+}
