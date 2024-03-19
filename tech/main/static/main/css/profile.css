@@ -4,11 +4,6 @@
     margin-bottom: 20px; /* Отступ снизу */
 }
 
-.logout-button {
-    font-size: 16px; /* Изменяем размер шрифта кнопки */
-    margin-right: 80px !important;
-}
-
 .homepage-link,
 .purchase-history-link {
     display: block;
@@ -22,3 +17,37 @@
 .purchase-history-link:hover {
     text-decoration: underline;
 }
+
+.go_to_homepage_profile{
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    position: absolute; /* Позиционируем абсолютно */
+    top: 45px; /* Отступ сверху */
+    right: 125px; /* Отступ справа */
+    width: auto;
+}
+
+.purchase-history-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border: none !important;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 25; /* Добавляем автоматические отступы слева и справа для центрирования кнопки */
+}
+
+.purchase-history-link:hover {
+    text-decoration: none;
+    background-color: #0056b3; /* Измените цвет при наведении по вашему усмотрению */
+}
+
+

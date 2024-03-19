@@ -40,6 +40,10 @@
     <br>
     <button class="go_to_homepage" onclick="location.href='{% url 'index' %}'">Go to Homepage</button>
     <button class="profile_button" onclick="location.href='{% url 'profile' %}'">Profile</button><br>
+    <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="logout-button">Logout</button>
+    </form><br>
 {% else %}
     <p>You are not logged in.</p>
     <a href="{% url 'login' %}">Login</a> | <a href="{% url 'signup' %}">Sign Up</a>

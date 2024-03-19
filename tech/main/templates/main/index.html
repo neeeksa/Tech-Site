@@ -11,6 +11,10 @@
 {% if request.user.is_authenticated %}
     <p class="logged-in-user">You are logged in as: {{ request.user.username }}</p>
     <button class="profile_button" onclick="location.href='{% url 'profile' %}'">Profile</button><br>
+    <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="logout-button">Logout</button>
+    </form><br>
     <br>
     <a href="{% url 'menu' %}">Menu</a><br>
     <br>

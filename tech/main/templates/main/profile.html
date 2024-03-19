@@ -13,9 +13,8 @@
         {% csrf_token %}
         <button type="submit" class="logout-button">Logout</button>
     </form><br>
-    <button class="go_to_homepage" onclick="location.href='{% url 'index' %}'">Go to Homepage</button>
-    <br><a href="{% url 'purchase_history' %}" class="purchase-history-link">Purchase history</a><br>
-    <button class="profile_button" onclick="location.href='{% url 'profile' %}'">Profile</button><br>
+    <button class="go_to_homepage_profile" onclick="location.href='{% url 'index' %}'">Go to Homepage</button>
+    <button class="purchase-history-link" onclick="location.href='{% url 'purchase_history' %}'">Purchase history</button>
 {% else %}
     <p>You are not logged in.</p>
     <a href="{% url 'login' %}">Login</a> | <a href="{% url 'signup' %}">Sign Up</a>

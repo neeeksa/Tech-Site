@@ -11,6 +11,11 @@
 </head>
 <h2>Purchase History</h2>
 <button class="profile_button" onclick="location.href='{% url 'profile' %}'">Profile</button><br>
+<button class="go_to_homepage" onclick="location.href='{% url 'index' %}'">Go to Homepage</button>
+<form action="{% url 'logout' %}" method="post">
+    {% csrf_token %}
+    <button type="submit" class="logout-button">Logout</button>
+</form><br>
 <ul class="purchase-history"> <!-- Добавлен класс purchase-history -->
     {% for purchase in purchase_history %}
         <li>

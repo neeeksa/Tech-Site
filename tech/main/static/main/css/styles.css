@@ -12,7 +12,8 @@ body {
     background-color: #f0f0f0;
 }
 
-button[type="submit"]{
+button[type="submit"],
+.delete_button{
     width: 50%;
     padding: 10px;
     background-color: #007bff;
@@ -57,7 +58,7 @@ button a:visited {
     cursor: pointer;
     position: absolute; /* Позиционируем абсолютно */
     top: 85px; /* Отступ сверху */
-    right: 0px; /* Отступ справа */
+    right: 35px; /* Отступ справа */
     width: auto;
 }
 
@@ -72,7 +73,48 @@ button a:visited {
     cursor: pointer;
     position: absolute; /* Позиционируем абсолютно */
     top: 45px; /* Отступ сверху */
-    right: 0px; /* Отступ справа */
+    right: 125px; /* Отступ справа */
     width: auto;
+}
+
+.logout-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    position: fixed; /* Позиционируем кнопку фиксированно */
+    top: 45px; /* Отступ сверху */
+    right: 0px; /* Отступ справа */
+    width: 120px !important; /* Фиксированная ширина кнопки */
+}
+
+.cancel_button{
+    width: 50%;
+    padding: 10px;
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: -25px;
+    margin-left: 58px;
+    display: block; /* Сделаем кнопку блочным элементом, чтобы установить ширину на 100% */
+}
+
+.delete_button{
+    width: 48%;
+    padding: 10px;
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: -25px;
+    margin-left: 58px;
+    display: block; /* Сделаем кнопку блочным элементом, чтобы установить ширину на 100% */
 }
 

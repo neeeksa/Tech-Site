@@ -9,5 +9,5 @@
     {% csrf_token %}
     <button type="submit">Yes, delete</button>
   </form>
-  <a href="{% url 'inventory' %}">Cancel</a>
+  <button class="delete_button" onclick="window.location.href='{% url 'inventory' %}'">Cancel</button>
 {% endblock %}

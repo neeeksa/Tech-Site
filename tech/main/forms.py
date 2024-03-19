@@ -27,7 +27,7 @@ class PurchaseForm(forms.ModelForm):
 class IngredientForm(forms.ModelForm):
     class Meta:
         model = Ingredient
-        fields = ['name', 'quantity', 'unit_price']
+        fields = ['name', 'quantity', 'price']
 
 
 class MenuItemForm(forms.ModelForm):

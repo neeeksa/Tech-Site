@@ -140,9 +140,9 @@ def purchase(request):
             purchase_instance.total_price = purchase_instance.ingredient.price * purchase_instance.quantity
             purchase_instance.purchase_date = timezone.now()
 
-            if purchase_instance.ingredient.quantity <= 0:
-                # Если количество ингредиента равно нулю или меньше, возвращаемся к странице покупки с сообщением об ошибке
-                form.add_error(None, "This ingredient is out of stock.")
+            if purchase_instance.ingredient.quantity < purchase_instance.quantity:
+                # Если запрашиваемое количество товара больше, чем есть в наличии, возвращаемся к странице покупки с сообщением об ошибке
+                form.add_error('quantity', "Not enough stock available for this ingredient.")
                 return render(request, 'main/purchase.html', {'form': form})
 
             purchase_instance.save()

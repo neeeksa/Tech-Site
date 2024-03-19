@@ -11,6 +11,5 @@
         {{ form.as_p }}
         <button type="submit">Save Changes</button>
     </form>
-    <br>
-    <button type="submit"><a href="{% url 'menu' %}">Go Back</a></button>
+    <button class="cancel_button" onclick="window.location.href='{% url 'menu' %}'">Cancel</button>
 {% endblock %}

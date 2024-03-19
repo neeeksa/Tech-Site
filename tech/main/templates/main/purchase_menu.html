@@ -10,6 +10,10 @@
     <h2>Purchase a dish from the Menu</h2>
     <button class="go_to_homepage" onclick="location.href='{% url 'index' %}'">Go to Homepage</button>
     <button class="profile_button" onclick="location.href='{% url 'profile' %}'">Profile</button><br>
+    <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="logout-button">Logout</button>
+    </form><br>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
