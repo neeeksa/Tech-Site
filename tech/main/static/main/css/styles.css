@@ -78,6 +78,7 @@ button a:visited {
 }
 
 .logout-button{
+    position: absolute;
     display: inline-block;
     padding: 10px 20px;
     background-color: #007bff;
@@ -86,7 +87,6 @@ button a:visited {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    position: fixed; /* Позиционируем кнопку фиксированно */
     top: 45px; /* Отступ сверху */
     right: 0px; /* Отступ справа */
     width: 120px !important; /* Фиксированная ширина кнопки */
@@ -187,5 +187,9 @@ select {
 
 .h2-snack{
     margin-bottom: -25px;
+    margin-left: 45px;
+}
+
+.no-purchase{
     margin-left: 45px;
 }

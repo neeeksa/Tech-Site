@@ -86,15 +86,16 @@ def inventory(request):
         if form.is_valid():
             name = form.cleaned_data['name']
             quantity = form.cleaned_data['quantity']
-            price = form.cleaned_data['unit_price']
+            unit_price = form.cleaned_data['unit_price']
 
             # Пытаемся найти ингредиент с таким же именем
-            ingredient, created = Ingredient.objects.get_or_create(name=name, defaults={'quantity': quantity, 'price': price})
+            ingredient, created = Ingredient.objects.get_or_create(name=name, defaults={'quantity': quantity,
+                                                                                        'unit_price': unit_price})
 
             if not created:
                 # Если ингредиент с таким именем уже существует, обновляем его количество и цену
                 ingredient.quantity += quantity
-                ingredient.price = price
+                ingredient.unit_price = unit_price
                 ingredient.save()
 
             # Перенаправляем пользователя на страницу инвентаря после добавления/обновления ингредиента
@@ -137,7 +138,7 @@ def purchase(request):
         if form.is_valid():
             purchase_instance = form.save(commit=False)
             purchase_instance.user = request.user
-            purchase_instance.total_price = purchase_instance.ingredient.price * purchase_instance.quantity
+            purchase_instance.total_price = purchase_instance.ingredient.unit_price * purchase_instance.quantity
             purchase_instance.purchase_date = timezone.now()
 
             if purchase_instance.ingredient.quantity < purchase_instance.quantity:

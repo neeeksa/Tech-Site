@@ -6,32 +6,36 @@
 {% block content %}
 {% if request.user.is_authenticated %}
     <p class="logged-in-user">You are logged in as: {{ request.user.username }}</p>
-<head>
-    <link rel="stylesheet" href="{% static 'main/css/purchase_history.css' %}">
-</head>
-<h2>Purchase History</h2>
-<button class="profile_button" onclick="location.href='{% url 'profile' %}'">Profile</button><br>
-<button class="go_to_homepage" onclick="location.href='{% url 'index' %}'">Go to Homepage</button>
-<form action="{% url 'logout' %}" method="post">
-    {% csrf_token %}
-    <button type="submit" class="logout-button">Logout</button>
-</form><br>
-<ul class="purchase-history"> <!-- Добавлен класс purchase-history -->
-    {% for purchase in purchase_history %}
-        <li>
-            <p>Purchase Date: {{ purchase.purchase_date }}</p>
-            {% if purchase.menu_item %}
-                <p>Menu Item: {{ purchase.menu_item }}</p>
-            {% else %}
-                <p>Ingredient: {{ purchase.ingredient }}</p>
-            {% endif %}
-            <p>Quantity: {{ purchase.quantity }}</p>
-            <p>Total Price: {{ purchase.total_price }}$</p>
-        </li>
-    {% endfor %}
-    {% else %}
+    <head>
+        <link rel="stylesheet" href="{% static 'main/css/purchase_history.css' %}">
+    </head>
+    <h2>Purchase History</h2>
+    <button class="profile_button" onclick="location.href='{% url 'profile' %}'">Profile</button><br>
+    <button class="go_to_homepage" onclick="location.href='{% url 'index' %}'">Go to Homepage</button>
+    <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="logout-button">Logout</button>
+    </form><br>
+    <ul class="purchase-history">
+        {% if purchase_history %}
+            {% for purchase in purchase_history %}
+                <li>
+                    <p>Purchase Date: {{ purchase.purchase_date }}</p>
+                    {% if purchase.menu_item %}
+                        <p>Menu Item: {{ purchase.menu_item }}</p>
+                    {% else %}
+                        <p>Ingredient: {{ purchase.ingredient }}</p>
+                    {% endif %}
+                    <p>Quantity: {{ purchase.quantity }}</p>
+                    <p>Total Price: {{ purchase.total_price }}$</p>
+                </li>
+            {% endfor %}
+        {% else %}
+            <p class="no-purchase">No purchase history available yet.</p>
+        {% endif %}
+    </ul>
+{% else %}
     <p>You are not logged in.</p>
     <a href="{% url 'login' %}">Login</a> | <a href="{% url 'signup' %}">Sign Up</a>
 {% endif %}
-</ul>
 {% endblock %}
