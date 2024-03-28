@@ -7,6 +7,22 @@ from .forms import (CustomAuthenticationForm, CustomUserCreationForm, PurchaseFo
 from .models import Ingredient, PurchaseHistory, MenuItem
 from django.utils import timezone
 
+from .serializers import IngredientSerializer, MenuItemSerializer
+from rest_framework import viewsets
+
+
+# ----------------------- api -----------------------
+class IngredientsApi(viewsets.ModelViewSet):
+    queryset = Ingredient.objects.all()
+    serializer_class = IngredientSerializer
+    http_method_names = ['get']
+
+
+class MenuItemApi(viewsets.ModelViewSet):
+    queryset = MenuItem.objects.all()
+    serializer_class = MenuItemSerializer
+    http_method_names = ['get']
+
 
 def edit_menu_item(request, pk):
     menu_item = get_object_or_404(MenuItem, pk=pk)
