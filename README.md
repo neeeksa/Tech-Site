@@ -1,21 +1,21 @@
-TECH site 
+TECH site
 
-Этот проект представляет собой веб-приложение для управления системой аутентификации, покупок товаров и их редактирования. В проекте используются Django, HTML, CSS, а также Django Rest Framework (DRF) для создания API.
+This project is a web application for managing an authentication system, purchasing products and editing them. The project uses Django, HTML, CSS, as well as the Django Rest Framework (DRF) to create the API.
 
-Особенности
-Аутентификация и авторизация: В проекте реализована система авторизации и аутентификации пользователей. Пользователи могут регистрироваться, входить в систему и выходить из нее.
+Peculiarities
+Authentication and authorization: The project implements a system for authorization and authentication of users. Users can register, log in and log out.
 
-Покупки товаров: Пользователи могут просматривать каталог товаров, добавлять их в корзину и оформлять покупки.
+Product purchases: Users can view a catalog of products, add them to the cart and check out.
 
-История покупок: Система сохраняет историю покупок пользователей, позволяя им просматривать свои предыдущие заказы.
+Purchase History: The system stores the purchase history of users, allowing them to view their previous orders.
 
-Редактирование товаров: Администраторы имеют возможность добавлять, редактировать и удалять товары из каталога.
+Editing products: Administrators have the ability to add, edit and remove products from the catalog.
 
-Технологии
-Python и Django: Базовая структура проекта и логика реализованы с использованием Django и языка Python.
+Technologies
+Python and Django: The basic project structure and logic is implemented using Django and the Python language.
 
-HTML и CSS: Для визуального представления данных и создания пользовательского интерфейса использовались HTML и CSS.
+HTML and CSS: HTML and CSS were used to visually represent the data and create the user interface.
 
-Django Rest Framework (DRF): Для создания API для взаимодействия с фронтендом и мобильными приложениями используется DRF.
+Django Rest Framework (DRF): Django Rest Framework (DRF) is used to create APIs for interacting with frontend and mobile applications.
 
-SQLite: В качестве базы данных используется SQLite, легковесная и простая в использовании реляционная база данных.
+SQLite: The database used is SQLite, a lightweight and easy to use relational database.
